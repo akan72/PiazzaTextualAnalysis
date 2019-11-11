@@ -1,6 +1,4 @@
-os
-piazza_api
-pandas
-pickle
-sklearn
-glob
+piazza-api==0.11.0
+pandas==0.25.1
+scikit-learn==0.21.3
+glob2==0.7
