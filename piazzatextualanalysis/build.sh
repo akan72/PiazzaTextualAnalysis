@@ -15,5 +15,5 @@ fi
 pip install -r requirements.txt
 
 # Run the jupyter notebook pipeline
-jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 pickle_posts.ipynb
-jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 transform_posts.ipynb
+# jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 pickle_posts.ipynb
+# jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 transform_posts.ipynb
