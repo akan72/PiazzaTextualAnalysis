@@ -11,9 +11,15 @@ if [[ -z "${PIAZZA_PASSWORD}" ]]; then
 	exit 1
 fi
 
+mkdir data data/posts data/dataframes
+
 # Install Python package requirements
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 # Run the jupyter notebook pipeline
-# jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 pickle_posts.ipynb
-# jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 transform_posts.ipynb
+if [ ! "$(ls -A data/dataframes)" ]; then
+	jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 pickle_posts.ipynb
+	jupyter nbconvert --to notebook --inplace --execute --ExecutePreprocessor.timeout=300 transform_posts.ipynb
+fi 
+
+# Run data analysis script and output plots
