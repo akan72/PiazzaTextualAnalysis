@@ -45,7 +45,7 @@ def lda_operation(data_samples, num_features: int=400, num_topics: int=6)-> Tupl
     return lda, tf_vectorizer
 
 def save_topics(model, vectorizer, top_n: int=10)-> List:
-    """ Save the top n topics from our trained model
+    """Save the top n topics from our trained model
     
     Args:
         model: Sklearn LatentDirichletAllocation model
@@ -64,6 +64,15 @@ def save_topics(model, vectorizer, top_n: int=10)-> List:
     return words_per_topic
 
 def sorted_word_count(df): 
+    """Returns a Pandas DataFrame of posts sorted by mean word count per day.
+
+    Args: 
+        df: A Pandas DataFrame
+    
+    Returns:
+        Pandas DataFrame
+    """
+
     df = df.copy()
     df['created'] = df['created'].dt.date
     
@@ -72,3 +81,26 @@ def sorted_word_count(df):
      .agg('mean')
      .reset_index()
      .sort_values(by='created'))
+
+def next_content(d: dict):
+    """Get the text content of the first child of a post 
+
+    Args:
+        d dict: A dictionary of the post's `children` field
+
+    Returns: 
+        A generator expression.
+    
+    ans = (student_dfs[0]
+       .query("type=='question'")).loc[0, ['id', 'children']]
+
+    ans = ans['children'].iloc[0]
+    list(next_content(ans[0]))
+
+    """
+    if 'history' in d:
+        yield d['history'][0]['content']
+    if not d['children']:
+        for child in d['children']:
+            for j in next_content(child):
+                yield j 

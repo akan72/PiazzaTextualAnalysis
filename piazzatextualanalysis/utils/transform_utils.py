@@ -17,6 +17,9 @@ def num_nested_dicts(d: dict, column: str):
     Args: 
         d dict: Outermost dictionary 
         column str: Key upon which we wish to match 
+
+    Usage: 
+        df['num_children'] = df['children'].apply(lambda x: len(list(num_nested_dicts(x[0], 'children'))) if len(x) > 0 else 0)
     '''
 
     if column in d:
