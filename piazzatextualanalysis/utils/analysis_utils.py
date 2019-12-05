@@ -92,7 +92,7 @@ def next_content(d: dict):
         A generator expression.
     
     ans = (student_dfs[0]
-       .query("type=='question'")).loc[0, ['id', 'children']]
+       .query("type=='question'")).loc[:, ['id', 'children']]
 
     ans = ans['children'].iloc[0]
     list(next_content(ans[0]))
