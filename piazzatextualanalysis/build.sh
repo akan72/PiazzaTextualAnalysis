@@ -25,3 +25,4 @@ if [ ! "$(ls -A data/dataframes)" ]; then
 fi 
 
 # Run data analysis script and output plots
+# TODO: Convert to Makefile
